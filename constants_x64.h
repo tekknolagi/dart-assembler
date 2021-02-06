@@ -254,18 +254,19 @@ public:
   static constexpr bool kAlignArguments = false;
 #endif
 
-  static_assert((kArgumentRegisters & kReservedCpuRegisters) == 0);
+  static_assert((kArgumentRegisters & kReservedCpuRegisters) == 0, "");
 
   static constexpr Register kFirstCalleeSavedCpuReg = RBX;
   static constexpr Register kFirstNonArgumentRegister = RAX;
   static constexpr Register kSecondNonArgumentRegister = RBX;
   static constexpr Register kStackPointerRegister = SPREG;
 
-  static_assert(((R(kFirstCalleeSavedCpuReg)) & kCalleeSaveCpuRegisters) != 0);
+  static_assert(((R(kFirstCalleeSavedCpuReg)) & kCalleeSaveCpuRegisters) != 0, "");
 
   static_assert(((R(kFirstNonArgumentRegister) |
                   R(kSecondNonArgumentRegister)) &
-                 kArgumentRegisters) == 0);
+                 kArgumentRegisters) == 0, "");
+
 };
 
 #undef R
